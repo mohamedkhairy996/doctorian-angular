@@ -1,3 +1,39 @@
+# 📄 Clinic Angular – Project Description
+Clinic Angular is a web application built with Angular 19, designed for managing clinical or healthcare operations. It provides a responsive, user-friendly interface to handle workflows such as patient records, appointment scheduling, billing, and reporting.
+
+✨ Key Features:
+Modern UI/UX: Styled with Bootstrap 5 and ng-bootstrap for mobile-friendly layouts.
+
+Data Management: Interactive tables and grids using Angular DataTables for viewing large datasets like patient lists, appointments, or invoices.
+
+State Management: Robust handling of application state using NgRx for scalable architecture.
+
+Rich Text Editing: TinyMCE integration for composing notes, reports, or templates.
+
+Payments Integration: Seamless online payments using Stripe via ngx-stripe.
+
+Beautiful Animations: Engaging visuals powered by Lottie animations.
+
+User Alerts: Customizable modal popups and alerts using SweetAlert and SweetAlert2.
+
+⚙️ Technical Stack:
+Angular 19
+
+Bootstrap 5
+
+NgRx
+
+Angular DataTables
+
+Stripe API
+
+TinyMCE Angular
+
+Lottie animations
+
+SweetAlert2
+
+The app is configured for Firebase deployments and follows Angular best practices for scalability and maintainability.
 # ClinicAngular
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.15.
