@@ -1,0 +1,27 @@
+#container{
+    display: inline-block;
+    float: left;
+    width: 30rem;
+}
+#top-div{
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    margin: 20px;
+}
+body {
+  background-image: url('/assets/images/register.jpg');
+  color: #ffffff;
+  background-repeat: no-repeat;
+    background-size: cover;
+}
+
+input, select, textarea {
+  background-color: #f3f1f1;
+  color: #030303;
+  border: 1px solid #555;
+}
+label{
+  font-weight: bold;
+}

@@ -1,0 +1,171 @@
+<body>
+<form class="container mt-5" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+    <div id="top-div">
+        <div id="container">
+            <div class="mb-3 ">
+                <label for="exampleInputEmail1" class="form-label">Email address</label>
+                <input type="email" class="form-control" id="email" name="email" formControlName="email" placeholder="Enter Your Email">
+            <div class="text-danger">
+                @if (email?.touched) {
+                @if (email?.hasError('required')) 
+                {
+                    <span>Email Is Required</span>
+                }
+                @if (email?.hasError('pattern')) 
+                {
+                    <span>Email must be like 123&#64;123.abc </span>
+                }
+                }
+
+         </div>
+
+            </div>
+            <div class="mb-3 ">
+                <label  class="form-label">Name</label>
+                <input type="text" class="form-control" id="name" formControlName="name" placeholder="Enter Your Name">
+                <div class="text-danger">
+                @if (name?.touched) {
+                @if (name?.hasError('required')) 
+                {
+                    <span>Name Is Required</span>
+                }
+                @if (name?.hasError('minlength')) 
+                {
+                    <span>Name must be at least 3 chars</span>
+                }
+                @if (name?.hasError('maxlength')) 
+                {
+                    <span>Name must be max 20 chars</span>
+                }
+                
+                }
+
+         </div>
+            </div>
+            <div class="mb-3 ">
+                <label  class="form-label">User Name</label>
+                <input type="text" class="form-control" id="username" formControlName="username" placeholder="Enter Your User Name">
+                <div class="text-danger">
+                @if (username?.touched) {
+                @if (username?.hasError('required')) 
+                {
+                    <span>username Is Required</span>
+                }
+                @if (username?.hasError('minlength')) 
+                {
+                    <span>username must be at least 3 chars</span>
+                }
+                @if (username?.hasError('maxlength')) 
+                {
+                    <span>username must be max 20 chars</span>
+                }
+                
+                }
+                </div>
+            </div>
+            <div class="mb-3 " >
+                <label  class="form-label">Date Of Birth</label>
+                <input type="date" class="form-control" id="dob" formControlName="dob" placeholder="Enter Your Date Of Birth">
+                <div class="text-danger">
+                @if (dob?.touched) {
+                @if (dob?.hasError('required')) 
+                {
+                    <span>Date Of Birth Is Required</span>
+                }
+                }
+            </div>
+        </div>
+            <div class="mb-3 ">
+                <label  class="form-label">Address</label>
+                <input type="text" class="form-control" id="Adress" formControlName="address" placeholder="Enter Your Address">
+                   <div class="text-danger">
+                @if (address?.touched) {
+                @if (address?.hasError('required')) 
+                {
+                    <span>Address Is Required</span>
+                }
+                @if (address?.hasError('minlength')) 
+                {
+                    <span>Address must be at least 5 chars</span>
+                }
+                @if (address?.hasError('maxlength')) 
+                {
+                    <span>Address must be max 100 chars</span>
+                }
+                
+                }
+                </div>
+            </div>
+            <div class="mb-3 ">
+                <label  class="form-label">Phone Number</label>
+                <input type="text" class="form-control" id="Phone" formControlName="phone" placeholder="Enter Your Phone Number +20">
+                 <div class="text-danger">
+                @if (phone?.touched) {
+                @if (phone?.hasError('required')) 
+                {
+                    <span>Phone Is Required</span>
+                }
+                @if (phone?.hasError('pattern')) 
+                {
+                    <span>Phone must be like 0123456789</span>
+                }
+                }
+                </div>
+            </div>
+            <div class="mb-3 " >
+                <label  class="form-label">Password</label>
+                <input type="password" class="form-control" id="password" formControlName="password" placeholder="Must be at least 6 characters long">
+                     <div class="text-danger">
+                @if (password?.touched) {
+                @if (password?.hasError('required')) 
+                {
+                    <span>password Is Required</span>
+                }
+                @if (password?.hasError('minlength')) 
+                {
+                    <span>password must be at least 6 chars</span>
+                }
+                @if (password?.hasError('maxlength')) 
+                {
+                    <span>password must be max 20 chars</span>
+                }
+                
+                }
+                </div>
+            </div>
+
+            <div class="mb-3" *ngIf="admin?.email === 'admin@clinic.com'">
+            <label class="form-label">Select Role</label>
+            
+            <div class="form-check ">
+                <input class="form-check-input"  style="border: 1px solid black;" type="radio"  id="patient" value="Patient" formControlName="role" name="role">
+                <label class="form-check-label"  for="patient">Patient</label>
+            </div>
+
+            <div class="form-check">
+                <input class="form-check-input"  style="border: 1px solid black;" type="radio" id="doctor" value="Doctor" formControlName="role" name="role">
+                <label class="form-check-label" for="doctor">Doctor</label>
+            </div>
+
+            <div class="form-check">
+                <input class="form-check-input"  style="border: 1px solid black;" type="radio" id="doctor" value="Nurse" formControlName="role" name="role">
+                <label class="form-check-label" for="nurse">Nurse</label>
+            </div>
+            <div class="mb-3" *ngIf="(role=='Doctor')">
+                <label class="form-label">Specialization</label>
+                <input class="form-control" type="text"  id="Specialization" placeholder="Enter Doctor Specialization" formControlName="specialization" name="Specialization">
+
+            </div>
+            </div>
+            
+        
+                <button type="submit" class="btn btn-primary" [disabled]="(registerForm.invalid)">Submit</button>
+        
+    </div>
+        <div id="picture">
+
+        </div>
+ 
+    </div>
+</form>
+</body>

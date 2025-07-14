@@ -1,0 +1,23 @@
+body {
+  background-color: #3a3939;
+  color: #ffffff;
+  min-height: 900px;
+}
+label{
+    color: black;
+    font-weight: bold;
+}
+#container
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 82vh;
+    width: 100%;
+    background-image: url('/assets/images/login.jpeg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    border-radius: 10px;
+}

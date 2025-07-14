@@ -1,0 +1,43 @@
+<body>
+    <form class="container mt-5" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <div id="container">
+            <div class="mb-3 " style="width: 400px;">
+                <label  class="form-label">User Name Or Email</label>
+                <input type="text" class="form-control" id="username" formControlName="usernameOrEmail" placeholder="Enter Your User Name Or Email">
+             <div class="text-danger">
+                @if (usernameOrEmail?.touched) {
+                    @if (usernameOrEmail?.hasError('required')) 
+                    {
+                        <span>User Name Or Email Is Required</span>
+                    }
+                    
+                }
+             </div>
+            </div>
+        <div class="mb-3" style="width: 400px;" >
+            <label  class="form-label">Password</label>
+            <input type="password" class="form-control" id="password" name="pass" formControlName="password" placeholder="Enter Your Password">
+            <div class="text-danger">
+                    @if (password?.touched) {
+                        @if (password?.hasError('required')) 
+                        {
+                            <span>Password Is Required</span>
+                        }
+                        @if (password?.hasError('pattern')) 
+                        {
+                            <span>Password must be at least 6 chars max length is 20 chars</span>
+                        } 
+                    }
+             </div>
+        </div>
+
+    <!-- <div class="mb-3 form-check">
+        <input type="checkbox" class="form-check-input" id="exampleCheck1">
+        <label class="form-check-label" for="exampleCheck1">Check me out</label>
+    </div> -->
+        <!-- Error messages can be displayed here if needed -->
+    <button type="submit" class="btn btn-success" style="width: 100px;">LogIn</button>
+    
+  </div>
+</form>
+</body>

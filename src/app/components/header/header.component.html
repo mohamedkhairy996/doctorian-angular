@@ -1,0 +1,58 @@
+<!-- <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs">
+    <li [ngbNavItem]="0">
+    <a ngbNavLink routerLink="/home" >Clinic</a>
+  </li>
+	<li [ngbNavItem]="1">
+        <a ngbNavLink routerLink="/home" >Home</a>
+	</li>
+	<li [ngbNavItem]="2">
+        <a ngbNavLink routerLink="/about" >About-Us</a>
+	</li>
+	<li [ngbNavItem]="3">
+        <a ngbNavLink routerLink="/appointments" >Appointments</a>
+	</li>
+</ul> -->
+<!-- Navigation-->
+    <link href="./../home/home.component.css" rel="stylesheet" />
+
+    <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
+      <div class="container px-1">
+        <a class="navbar-brand" routerLink="/home" >Doctorian</a>
+        <a class="navbar-brand" routerLink="/home" >Home</a>
+        <a class="navbar-brand" routerLink="/about" >About-Us</a>
+        <a class="navbar-brand" routerLink="/appointments" *ngIf="user.name!==null">Appointments</a>
+        <a class="navbar-brand" routerLink="/addappointment" *ngIf="user.email=='admin@clinic.com'">Add-Appointment</a>
+        <a class="navbar-brand" routerLink="/register" *ngIf="user.email=='admin@clinic.com'">Add-User</a>
+        
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarResponsive"
+          aria-controls="navbarResponsive"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ms-auto">
+            <div *ngIf="user.name!= null && user.name != ''"  style="display: flex">
+              <li class="nav-item"><a class="nav-link" routerLink="">Welcome {{user.name}} !</a></li>
+                <li class="nav-item"><a class="nav-link" (click)="logout()">Log Out</a></li>
+            </div>
+            <div *ngIf="user.name == null || user.name == ''" style="display: flex">
+              <li class="nav-item"><a class="nav-link" routerLink="/login">Sign In</a></li>
+              <li class="nav-item"><a class="nav-link" routerLink="/register">Sign Up</a></li>
+            </div>
+            
+          </ul>
+
+          
+        </div>
+      </div>
+    </nav>
+
+    
+    <!-- Header
+<div [ngbNavOutlet]="nav" class="mt-2"></div> -->

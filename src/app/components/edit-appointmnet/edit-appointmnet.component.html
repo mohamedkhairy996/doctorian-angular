@@ -1,0 +1,95 @@
+<body>
+<div *ngIf="isLoading">
+  <p>Loading appointment details...</p>
+</div>
+<form class="container mt-5 p-5 shadow-lg rounded" [formGroup]="editForm" (ngSubmit)="onSubmit()" *ngIf="(!isLoading) && userAdmin">
+
+    <div class="mb-3 col-lg-6">
+      <select class="form-select" aria-label="Default select example" id="status" name="status" formControlName="Status">
+        <option selected value="0">Select Status</option>
+        @for (item of statuses; track $index) {
+            <option value="{{item}}">{{item}}</option>
+        }
+        
+      </select>
+    </div>
+    <div class="mb-3 row">
+    <div class="col-lg-6">
+        <label for="exampleInputEmail1" class="form-label">Appointment Date</label>
+        <input type="date" class="form-control"  id="appointmentDate" name="appointmentDate" formControlName="Day" placeholder="Enter Appointment Date">
+        <div *ngIf="Day?.errors?.['dateBeforeToday'] && Day?.touched" class="text-danger">
+            Date cannot be earlier than today.
+        </div>
+    </div>
+  </div>
+
+    <div class="mb-3" >
+      <label for="input1" class="form-label">Patient Diagnosis</label>
+        <editor apiKey="h77ee7t1o16jdoebrim3jmqbqrzlv0yynswi3vxkhh1po9hk"  [init]="init" id="Diagnosis" name="diagnosis" formControlName="Diagonsis" />
+        
+    </div>
+
+    <div id="submit">
+        <button type="submit"  class="btn btn-outline-success" [disabled]="editForm.invalid">Save</button>
+        <button type="button"  id="delete" class="btn btn-outline-danger" (click)="deleteApp(appId)">Delete</button>
+        <button *ngIf="Appointment?.status=='Assigned'" type="button" class="btn btn-outline-success " style="height: 50px;" (click)="pay()">Pay</button>
+        <button *ngIf="Appointment?.status !=='Canceled'" type="button"  class="btn btn-secondary" style="height: 50px;" (click)="cancel()" [disabled]="editForm.invalid">Cancel</button>
+    </div>
+
+</form>
+
+
+<form class="container mt-5 p-5 shadow-lg rounded" [formGroup]="editForm" (ngSubmit)="onSubmitUser()" *ngIf="(!isLoading) && (!userAdmin)">
+
+    <div class="container mt-4">
+  <h4 class="mb-3 text-center">Appointments</h4>
+
+  <table class="table table-bordered table-hover table-striped">
+    <thead class="table-dark text-center">
+      <tr>
+        <th>#</th>
+        <th>Start Time</th>
+        <th>Day</th>
+        <th>Duration</th>
+        <th>Status</th>
+        <th>Diagnosis</th>
+        <th>Doctor</th>
+        <th>Patient</th>
+      </tr>
+    </thead>
+    <tbody class="text-center">
+        <td>{{ Appointment?.id }}</td>
+        <td>{{ Appointment?.startTime | date: 'shortTime' }}</td>
+        <td>{{ Appointment?.day | date: 'mediumDate' }}</td>
+        <td>{{ Appointment?.durationMinutes }} mins</td>
+        <td>
+          <span [ngClass]="{
+            'badge bg-success': Appointment?.status === 'Confirmed',
+            'badge bg-warning text-dark': Appointment?.status === 'Pending',
+            'badge bg-danger': Appointment?.status === 'Cancelled'
+          }">
+            {{ Appointment?.status }}
+          </span>
+        </td>
+        <td>{{ Appointment?.diagnosis || 'N/A' }}</td>
+        <td>{{ Appointment?.doctor?.name || 'N/A' }}</td>
+        <td>{{ Appointment?.patient?.name || 'N/A' }}</td>
+      
+    </tbody>
+  </table>
+</div>
+
+
+    <div class="mb-3 d-flex align-content-center justify-content-center">
+      <input hidden id="status" name="status" formControlName="Status" value="Canceled">
+    </div>
+<div *ngIf="Appointment?.status !=='Canceled'">
+    <div id="submit" >
+        <button type="submit"  class="btn btn-outline-danger w-50" [disabled]="editForm.invalid">Cancel</button>
+      </div>
+      <div style="display:flex; justify-content: center; align-items: center; padding: 20px;" *ngIf="Appointment?.status=='Assigned'">
+        <button type="button" class="btn btn-outline-success w-50" style="height: 50px;" (click)="pay()">Pay</button>
+      </div>
+  </div>    
+</form>
+</body>

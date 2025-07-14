@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <!-- Font Awesome icons (free version)-->
+    <script
+      src="https://use.fontawesome.com/releases/v6.3.0/js/all.js"
+      crossorigin="anonymous"
+    ></script>
+    <!-- Google fonts-->
+    <link
+      href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i"
+      rel="stylesheet"
+    />
+  </head>
+  <body id="page-top">
+    <header class="masthead text-center text-white" style="height: 900px;">
+      <div class="masthead-content">
+        <div class="container px-5">
+          <h1 class="masthead-heading mb-0">Welcome To Our Clinic</h1>
+          <h2 class="masthead-subheading mb-0">We Wish you get better soon</h2>
+          <a class="btn btn-primary btn-xl rounded-pill m-5" href="/home#doctors0">
+            Discover Doctors
+          </a>
+        </div>
+      </div>
+      <div class="bg-circle-1 bg-circle"></div>
+      <div class="bg-circle-2 bg-circle"></div>
+      <div class="bg-circle-3 bg-circle"></div>
+      <div class="bg-circle-4 bg-circle"></div>
+    </header>
+    <!-- Content section 1-->
+    
+    @for (item of doctors; track $index) 
+    {
+    <div (click)="addAppointment(item.id)" style="cursor: pointer; border-top: 2px whitesmoke solid; " 
+    *ngIf="$index%2==0">
+      <section id='doctors{{$index}}'>
+        <div class="container px-5">
+          <div class="row gx-5 align-items-center">
+            <div class="col-lg-6 order-lg-2">
+              <div class="p-5">
+                <img
+                  class="img-fluid rounded-circle"
+                  src="/assets/images/home/dr{{$index+1}}.jpeg"
+                  style="width: 300px;height: 300px;"
+                />
+              </div>
+            </div>
+            <div class="col-lg-6 order-lg-1">
+              <div class="p-5">
+                <h1 class="text-primary">Dr/{{item.name}}</h1>
+                <h4 >Specialization : {{item.specialization}}</h4>
+                <h6 >ContactInfo : {{item.contactInfo}}</h6>
+                <p>
+                  About : {{item.applicationUser!.about}}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+    <div (click)="addAppointment(item.id)" style="cursor: pointer; border-top: 2px whitesmoke solid; "
+    *ngIf="$index%2 !== 0">
+      <section id='doctors{{$index}}'>
+        <div class="container px-5">
+          <div class="row gx-5 align-items-center">
+            <div class="col-lg-6 ">
+              <div class="p-5">
+                <img
+                  class="img-fluid rounded-circle"
+                  src="/assets/images/home/dr{{$index+1}}.jpeg"
+                  style="width: 300px;height: 300px;"
+                />
+              </div>
+            </div>
+            <div class="col-lg-6 ">
+              <div class="p-5">
+                <h1 class="text-danger">Dr/{{item.name}}</h1>
+                <h4 >Specialization : {{item.specialization}}</h4>
+                <h6 >ContactInfo : {{item.contactInfo}}</h6>
+                <p>
+                  About : {{item.applicationUser!.about}}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+    }
+  </body>
+</html>

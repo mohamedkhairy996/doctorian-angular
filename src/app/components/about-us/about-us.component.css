@@ -1,0 +1,11 @@
+body {
+  background-color: #3a3939;
+  color: #ffffff;
+}
+
+input, select, textarea {
+  background-color: #1e1e1e;
+  color: #ffffff;
+  border: 1px solid #555;
+}
+

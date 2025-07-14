@@ -1,0 +1,60 @@
+<body style="min-height: 880px;"> 
+<div class="container mt-5 p-5 shadow-lg rounded">
+    <div id="appointments-container"style="text-align: center; align-items: center; " >
+      <button *ngIf="user.email=='admin@clinic.com'" type="button" (click)="navigate()" class="btn btn-outline-info">Add-Appointment</button>
+    </div>
+
+<div class="container mt-4" *ngIf="!empty">
+  <h4 class="mb-3 text-center">Appointments</h4>
+
+  <table class="table table-bordered table-hover table-striped">
+    <thead class="table-dark text-center">
+      <tr>
+        <th>#</th>
+        <th>Day</th>
+        <th>Status</th>
+        <th>Diagnosis</th>
+        <th>Doctor</th>
+        <th>Patient</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody class="text-center">
+      <tr *ngFor="let Appointment of Appointments ; let i = index">
+        <td>{{ i+1 }}</td>
+        <td>{{ Appointment.day | date: 'mediumDate' }}</td>
+        <td>
+          <span [ngClass]="{
+            'badge bg-success': Appointment.status === 'Confirmed',
+            'badge bg-warning text-dark': Appointment.status === 'Pending',
+            'badge bg-danger': Appointment.status === 'Cancelled'
+          }">
+            {{ Appointment.status }}
+          </span>
+        </td>
+        <td>{{ Appointment.diagnosis || 'N/A' }}</td>
+        <td>{{ Appointment.doctor.name || 'N/A' }}</td>
+        <td>{{ Appointment.patient.name || 'N/A' }}</td>
+        <td>
+        <button *ngIf="Appointment.status == 'Assigned'" type="button" class="btn btn-outline-success" (click)="pay(Appointment.id)">Pay</button>
+        <button *ngIf="Appointment.status !=='Canceled' && Appointment.status !== 'Refunded' " type="button" (click)="cancel(Appointment.id)" class="btn btn-outline-danger">Cancel</button>
+        <a type="button" *ngIf="user.email == 'admin@clinic.com'" href='/editAppointment/{{Appointment.id}}'   class="btn btn-outline-info">Edit</a>
+        
+      </td>
+    </tbody>
+  </table>
+</div>
+</div >
+
+
+  <div *ngIf="empty">
+    <div class="text-primary d-flex justify-content-center ">
+    <h1  > You Don't Have Appointments Yet ... </h1>
+  </div>
+  <div class="text-primary d-flex justify-content-center ">
+    <a href="/home" class="btn btn-outline-success" >Back To Home</a>
+  </div>
+</div>
+
+
+</body>

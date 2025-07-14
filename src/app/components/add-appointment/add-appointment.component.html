@@ -1,0 +1,116 @@
+<body>
+<form class="container mt-5 p-5 shadow-lg rounded" [formGroup]="formData" (ngSubmit)="onSubmit()" *ngIf="user.email == 'admin@clinic.com'">
+    <div class="mb-3">
+    <div class="row mb-3">
+            <div class=" col-lg-6">
+                <label for="exampleInputEmail1" class="form-label">Patient</label>
+                <select class="form-select" aria-label="Default select example" id="patientId" name="patientId" formControlName="patientId">
+                    <option selected value="0" >Select Patient</option>
+                    @for (item of patients; track $index) 
+                    {
+                        <option [value]="item.id">{{item.name}}</option>
+                    }
+                </select>
+                <div class="text-danger">
+                    @if (patient?.hasError("required")) 
+                    {
+                        <span>Patient Is Required</span>
+                    }
+                    @if (patient?.hasError('invalid')) 
+                    {
+                         <span>Select Patient</span>
+                    }
+                </div>
+            </div>
+        <div class="col-lg-6">
+                <label for="exampleInputEmail1" class="form-label">Doctor</label>
+                <select class="form-select" aria-label="Default select example" id="doctorId" name="doctorId" formControlName="doctorId">
+                    <option selected value="0" >Select Doctor</option>
+                    @for (item of doctors; track $index) 
+                    {
+                        <option [value]="item.id">Dr/ {{item.name}}</option>
+                    }
+                </select>
+                <div class="text-danger">
+                    @if (doctor?.hasError("required")) 
+                    {
+                        <span>Doctor Is Required</span>
+                        
+                    }
+                    @if (doctor?.hasError('invalid')) 
+                    {
+                         <span>Select Doctor</span>
+                    }
+
+                </div>
+        </div>
+    </div>
+<div class="mb-3 row">
+    <div class="col-lg-6">
+        <label for="exampleInputEmail1" class="form-label">Appointment Date</label>
+        <input type="date" class="form-control"  id="appointmentDate" name="appointmentDate" formControlName="day" placeholder="Enter Appointment Date">
+    </div>
+    <div class="text-danger">
+                    @if (day?.hasError("required") && day?.touched) 
+                    {
+                        <span>Day Is Required</span>
+                    }
+                </div>
+                <div *ngIf="day?.errors?.['dateBeforeToday'] && day?.touched" class="text-danger">
+            Date cannot be earlier than today.
+        </div>
+    </div>
+    <div class="text-danger">
+                    @if (day?.hasError("required")) 
+                    {
+                        <span>Day Is Required</span>
+                    }
+                </div>
+</div>
+<div class="container mt-5">
+    <div class="d-flex justify-content-center mt-3">
+        <button type="submit" class="btn btn-primary px-5" [disabled]="formData.invalid">Submit</button>
+    </div>
+
+</div>
+
+</form>
+
+
+<form class="container mt-5 p-5 shadow-lg rounded" [formGroup]="formData" (ngSubmit)="onSubmitUser()" *ngIf="user.email !== 'admin@clinic.com'">
+    <div class="mb-3">
+    <div class="row mb-3">
+            <div class=" col-lg-6">
+                <label for="exampleInputEmail1" class="form-label">Patient</label>
+                <input class="form-control" [value]="Patient.name" [disabled]="true">
+            </div>
+        <div class="col-lg-6">
+                <label for="exampleInputEmail1" class="form-label">Doctor</label>
+                <input class="form-control" [value]="Doctor.name" [disabled]="true">
+        </div>
+    </div>
+<div class="mb-3 row">
+    <div class="col-lg-6">
+        <label for="exampleInputEmail1" class="form-label">Appointment Date</label>
+        <input type="date" class="form-control"  id="appointmentDate" name="appointmentDate" formControlName="day" placeholder="Enter Appointment Date">
+        <div *ngIf="day?.errors?.['dateBeforeToday'] && day?.touched" class="text-danger">
+            Date cannot be earlier than today.
+        </div>
+    </div>
+    <div class="text-danger">
+                    @if (day?.hasError("required")) 
+                    {
+                        <span>Day Is Required</span>
+                    }
+                </div>
+</div>
+<div class="container mt-5">
+    <div class="d-flex justify-content-center mt-3">
+        <button type="submit" class="btn btn-primary px-5" [disabled]="formData.invalid">Submit</button>
+    </div>
+
+</div>
+</div>
+
+</form>
+</body>

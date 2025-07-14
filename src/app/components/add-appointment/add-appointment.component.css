@@ -1,0 +1,28 @@
+body {
+  background-color: #3a3939;
+  color: #ffffff;
+  min-height: 900px;
+}
+
+input, select, textarea {
+  background: #5f0000;   /* Dark red background */
+  color: #f7f7f7;        /* Light text color */
+  border: 1px solid #0e0a0a; /* Dark border */
+  padding: 8px;
+  border-radius: 4px;
+}
+
+/* Optional hover/focus effect */
+input:focus, select:focus, textarea:focus {
+  outline: none;
+  border-color: #f7f7f7;
+  box-shadow: 0 0 5px #f7f7f7;
+}
+
+/* Style for disabled elements */
+input:disabled {
+  background: #5f0000;
+  color: #fcfafa;
+  border: 1px solid #fd0202;
+  cursor: not-allowed;
+}
